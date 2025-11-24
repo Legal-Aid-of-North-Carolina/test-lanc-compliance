@@ -20,9 +20,9 @@ const logger = winston.createLogger({
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.simple()
-      )
-    })
-  ]
+      ),
+    }),
+  ],
 });
 
 const app = express();
@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   logger.info(`${req.method} ${req.path}`, {
     ip: req.ip,
-    userAgent: req.get('User-Agent')
+    userAgent: req.get('User-Agent'),
   });
   next();
 });
@@ -56,11 +56,11 @@ app.get('/health', (req, res) => {
     uptime: Math.floor(process.uptime()),
     memory: {
       used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB',
-      total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024) + 'MB'
+      total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024) + 'MB',
     },
-    service: 'test-lanc-compliance'
+    service: 'test-lanc-compliance',
   };
-  
+
   res.status(200).json(healthCheck);
 });
 
@@ -71,10 +71,10 @@ app.get('/health/readiness', (req, res) => {
     timestamp: new Date().toISOString(),
     checks: {
       database: 'healthy', // Would check actual database connection
-      dependencies: 'healthy'
-    }
+      dependencies: 'healthy',
+    },
   };
-  
+
   res.status(200).json(readinessCheck);
 });
 
@@ -83,9 +83,9 @@ app.get('/health/liveness', (req, res) => {
   const livenessCheck = {
     status: 'alive',
     timestamp: new Date().toISOString(),
-    uptime: Math.floor(process.uptime())
+    uptime: Math.floor(process.uptime()),
   };
-  
+
   res.status(200).json(livenessCheck);
 });
 
@@ -100,18 +100,18 @@ app.get('/api/status', (req, res) => {
     features: {
       healthChecks: 'enabled',
       logging: 'enabled',
-      security: 'enabled'
-    }
+      security: 'enabled',
+    },
   };
-  
+
   res.status(200).json(status);
 });
 
 // Sample API endpoint
 app.get('/api/hello', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'Hello from LANC-compliant test service!',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -123,9 +123,9 @@ app.use('*', (req, res) => {
     status: 404,
     timestamp: new Date().toISOString(),
     path: req.originalUrl,
-    method: req.method
+    method: req.method,
   };
-  
+
   logger.warn('404 Not Found', error);
   res.status(404).json(error);
 });
@@ -134,30 +134,30 @@ app.use('*', (req, res) => {
 app.use((err, req, res, next) => {
   const status = err.status || err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
-  
+
   const errorResponse = {
     error: 'Server Error',
     message: message,
     status: status,
     timestamp: new Date().toISOString(),
     path: req.originalUrl,
-    method: req.method
+    method: req.method,
   };
-  
+
   // Log error details
   logger.error('Server Error', {
     ...errorResponse,
     stack: err.stack,
-    body: req.body
+    body: req.body,
   });
-  
+
   // Don't leak error details in production
   if (NODE_ENV === 'production') {
     delete errorResponse.stack;
   } else {
     errorResponse.stack = err.stack;
   }
-  
+
   res.status(status).json(errorResponse);
 });
 
@@ -178,7 +178,7 @@ app.listen(PORT, () => {
     port: PORT,
     environment: NODE_ENV,
     version: require('./package.json').version,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 

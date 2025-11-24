@@ -1,7 +1,7 @@
 {
   "name": "test-lanc-compliance",
   "version": "1.0.0",
-  "description": "Test repository to validate LANC standards compliance prompt template",
+  "description": "LANC Standards Reference Implementation - Perfect compliance example for all LANC repositories",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

@@ -50,7 +50,7 @@ az webapp create \
     --name "${REPO_NAME}-development" \
     --resource-group "$RESOURCE_GROUP" \
     --plan "$APP_SERVICE_PLAN" \
-    --runtime "NODE:18-lts" \
+    --runtime "NODE:20-lts" \
     --startup-file "startup.sh"
 
 # Create Staging App Service
@@ -59,7 +59,7 @@ az webapp create \
     --name "${REPO_NAME}-staging" \
     --resource-group "$RESOURCE_GROUP" \
     --plan "$APP_SERVICE_PLAN" \
-    --runtime "NODE:18-lts" \
+    --runtime "NODE:20-lts" \
     --startup-file "startup.sh"
 
 # Create Production App Service (with custom domain ready)
@@ -68,7 +68,7 @@ az webapp create \
     --name "$REPO_NAME" \
     --resource-group "$RESOURCE_GROUP" \
     --plan "$APP_SERVICE_PLAN" \
-    --runtime "NODE:18-lts" \
+    --runtime "NODE:20-lts" \
     --startup-file "startup.sh"
 
 # Configure environment variables for all apps
