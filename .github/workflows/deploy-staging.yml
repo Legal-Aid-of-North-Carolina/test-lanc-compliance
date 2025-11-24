@@ -14,7 +14,8 @@ jobs:
   build-and-deploy:
     name: Build and Deploy to Staging
     runs-on: ubuntu-latest
-    environment: staging
+    environment:
+      name: staging
     
     steps:
     - name: Checkout repository

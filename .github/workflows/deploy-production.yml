@@ -16,7 +16,8 @@ jobs:
   build-and-deploy:
     name: Build and Deploy to Production
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: production
     
     steps:
     - name: Checkout repository
