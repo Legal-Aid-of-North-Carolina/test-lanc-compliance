@@ -6,10 +6,11 @@
 
 ## Standards Compliance
 
-This repository follows [LANC Repository Standards](https://github.com/Legal-Aid-of-North-Carolina/lanc-standards). 
+This repository follows [LANC Repository Standards](https://github.com/Legal-Aid-of-North-Carolina/lanc-standards).
 For development guidelines, templates, and best practices, see the [LANC Standards Documentation](https://github.com/Legal-Aid-of-North-Carolina/lanc-standards/blob/main/REPOSITORY_STANDARDS.md).
 
 **Use this repository as a reference when:**
+
 - Creating new LANC repositories
 - Updating existing repositories for compliance
 - Training developers on LANC standards
@@ -17,26 +18,29 @@ For development guidelines, templates, and best practices, see the [LANC Standar
 
 ## 🏗️ Reference Deployments (Currently Stopped)
 
-*Note: Azure resources are stopped to prevent any costs but maintained for reference*
+_Note: Azure resources are stopped to prevent any costs but maintained for reference_
 
 - **Development**: https://test-lanc-compliance-development.azurewebsites.net/ (Stopped)
-- **Staging**: https://test-lanc-compliance-staging.azurewebsites.net/ (Stopped)  
+- **Staging**: https://test-lanc-compliance-staging.azurewebsites.net/ (Stopped)
 - **Production**: https://test-lanc-compliance.azurewebsites.net/ (Stopped)## 💡 Reference Implementation Features
 
 This repository demonstrates **perfect LANC compliance** with:
 
 ✅ **All Required Health Endpoints**
+
 - `GET /health` - Comprehensive health check
-- `GET /health/readiness` - Container readiness probe  
+- `GET /health/readiness` - Container readiness probe
 - `GET /health/liveness` - Container liveness probe
 - `GET /api/status` - Service-specific status
 
 ✅ **Complete Three-Tier Architecture**
+
 - Development → Staging → Production deployment pipeline
 - GitHub Actions workflows for each environment
 - Azure App Service configuration
 
 ✅ **Security & Best Practices**
+
 - Helmet.js security headers
 - CORS configuration
 - Structured error handling
@@ -44,6 +48,7 @@ This repository demonstrates **perfect LANC compliance** with:
 - Docker multi-stage builds
 
 ✅ **Latest Dependency Standards**
+
 - Node.js 20 LTS runtime
 - Latest stable dependency versions
 - Proper semantic versioning
